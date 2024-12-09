@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center">
+      <i class="bi bi-house-door-fill me-2"></i>
+      <span class="fw-bold">MyApp</span>
+    </a>
+
+    <!-- Toggler -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navigation Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" routerLink="/products" routerLinkActive="active">
+            <i class="bi bi-box-seam me-1"></i> Products
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf='keycloakService.getUserRoles().includes("ADMIN")'>
+          <a class="nav-link d-flex align-items-center" routerLink="/customers" routerLinkActive="active">
+            <i class="bi bi-people-fill me-1"></i> Customers
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Auth Section -->
+    <div class="d-flex align-items-center ms-auto">
+
+      <ng-container *ngIf="profile; else notLoggedIn">
+        <span class="text-light me-3 d-flex align-items-center">
+          <i class="bi bi-person-circle me-1"></i>
+          <strong>{{ profile.username }}</strong>
+        </span>
+        <button class="btn btn-light btn-sm d-flex align-items-center" (click)="handleLogout()">
+          <i class="bi bi-box-arrow-right me-1"></i> Logout
+        </button>
+      </ng-container>
+
+      <ng-template #notLoggedIn>
+        <button class="btn btn-light btn-sm d-flex align-items-center" (click)="handleLogin()">
+          <i class="bi bi-box-arrow-in-right me-1"></i> Login
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mt-4">
+  <router-outlet></router-outlet>
+</div>
