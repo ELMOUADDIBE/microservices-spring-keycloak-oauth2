@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <h2 class="text-center">Orders List</h2>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading" class="text-center my-3">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger text-center my-3">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Orders Table -->
+  <table class="table table-striped table-hover mt-3" *ngIf="!isLoading && !errorMessage && orders.length > 0">
+    <thead class="table-primary">
+    <tr>
+      <th>Order #ID</th>
+      <th>Date</th>
+      <th>State</th>
+      <th>Items Count</th>
+      <th style="width: 150px;">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders; let i = index">
+      <td>{{ order.id }}</td>
+      <td>{{ order.date }}</td>
+      <td><span class="badge bg-info">{{ order.state }}</span></td>
+      <td>{{ order.productItems?.length || 0 }}</td>
+      <td>
+        <button class="btn btn-info btn-sm" (click)="viewOrderDetails(order.id)">
+          <i class="bi bi-eye"></i> View
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- No Orders Found -->
+  <div *ngIf="!isLoading && !errorMessage && orders.length === 0" class="text-center my-3">
+    <p>No orders available.</p>
+  </div>
+</div>
