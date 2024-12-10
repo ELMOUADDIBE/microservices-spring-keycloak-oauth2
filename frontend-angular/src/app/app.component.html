@@ -28,11 +28,17 @@
           </a>
         </li>
 
-        <li class="nav-item" *ngIf='keycloakService.getUserRoles().includes("ADMIN")'>
-          <a class="nav-link d-flex align-items-center" routerLink="/customers" routerLinkActive="active">
-            <i class="bi bi-people-fill me-1"></i> Customers
+        <li class="nav-item" >
+          <a class="nav-link d-flex align-items-center" routerLink="/orders" routerLinkActive="active">
+            <i class="bi bi-cart-fill me-1"></i> Orders
           </a>
         </li>
+
+      <li class="nav-item" *ngIf='keycloakService.getUserRoles().includes("ADMIN")'>
+        <a class="nav-link d-flex align-items-center" routerLink="/customers" routerLinkActive="active">
+          <i class="bi bi-people-fill me-1"></i> Customers
+        </a>
+      </li>
       </ul>
     </div>
 
