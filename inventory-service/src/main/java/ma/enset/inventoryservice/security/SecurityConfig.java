@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         // Public endpoints
                         .requestMatchers("/h2-console/**","/swagger-ui/**","/v3/**","/swagger-ui.html").permitAll()
-                        .requestMatchers("/api/products/**").permitAll()
+//                        .requestMatchers("/api/products/**").permitAll()
                         // Secure endpoints
 //                        .requestMatchers("/api/**").hasAuthority("ADMIN")
                         // All other requests

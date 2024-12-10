@@ -20,7 +20,7 @@ public class InventoryServiceApplication {
     CommandLineRunner commandLineRunner(ProductRepository productRepository){
         return args -> {
             Stream.of("Computer", "Printer", "Smartphone", "Tablet").forEach(name -> {
-                productRepository.save(Product.builder().name(name).price(Math.random()*1000).quantity((int)(Math.random()*10)).build());
+                productRepository.save(Product.builder().id(name+"ID").name(name).price(Math.random()*1000).quantity((int)(Math.random()*10)).build());
             });
         productRepository.findAll().forEach(System.out::println);
         };

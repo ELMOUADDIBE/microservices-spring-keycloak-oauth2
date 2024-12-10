@@ -31,7 +31,7 @@ public class OrderServiceApplication {
             ProductItemRepository productItemRepository
     ) {
         return args -> {
-            List<Product> allProducts = inventoryRestClient.getAllProducts();
+            List<String> allProducts = List.of("ComputerID", "PrinterID", "SmartphoneID", "TabletID");
 
             for (int i = 0; i < 10; i++) {
                 Order savedOrder = orderRepository.save(
@@ -44,8 +44,8 @@ public class OrderServiceApplication {
                 allProducts.forEach(product -> {
                     productItemRepository.save(
                             ProductItem.builder()
-                                    .productId(product.getId())
-                                    .price(product.getPrice())
+                                    .productId(product)
+                                    .price(Math.random() * 500)
                                     .quantity((int) (1 + Math.random() * 100))
                                     .order(savedOrder)
                                     .build()
