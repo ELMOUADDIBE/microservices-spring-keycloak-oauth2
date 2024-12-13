@@ -1,0 +1,4 @@
+db:
+  name: testdb
+  user: testuser
+  password: testpassword
